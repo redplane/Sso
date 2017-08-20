@@ -6,14 +6,13 @@ using Autofac.Integration.WebApi;
 using Owin;
 using Shared.Interfaces.Repositories;
 using Shared.Models.Contexts;
-using Shared.Models.Messages;
 using Shared.Repositories;
 using Shared.Services;
 using Sso.Services;
 
 namespace Sso.Configs
 {
-    public class InversionOfControlConfig
+    public class IocConfig
     {
         #region Methods
 
@@ -45,12 +44,7 @@ namespace Sso.Configs
             // Register services.
             var systemFileService = new SystemFileService();
             containerBuilder.RegisterType<SystemFileService>().As<ISystemFileService>().OnActivating(x => x.ReplaceInstance(systemFileService)).InstancePerLifetimeScope();
-
-            // Find queue setting.
-            var mqOption =
-                systemFileService.LoadJsonFile<MqServer>(ConfigurationManager.AppSettings["MqConfigurationFile"], false);
-            containerBuilder.RegisterType<MqServer>().OnActivating(x => x.ReplaceInstance(mqOption)).SingleInstance();
-
+            
             #endregion
 
             #region IoC build

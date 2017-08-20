@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
+using Database.Models.Entities;
 using Shared.Interfaces.Repositories;
-using Shared.Models.Entities;
 
 namespace Shared.Repositories
 {

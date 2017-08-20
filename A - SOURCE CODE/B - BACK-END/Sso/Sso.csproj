@@ -225,7 +225,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configs\InversionOfControlConfig.cs" />
+    <Compile Include="Configs\IocConfig.cs" />
     <Compile Include="Constants\Queues.cs" />
     <Compile Include="Controllers\ApiAccountController.cs" />
     <Compile Include="Program.cs" />
@@ -253,6 +253,10 @@
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{0CC4EF35-BB6D-498E-9F71-60EA75BABEAE}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{221A6C42-BD4B-40CD-94B5-822924BD30BD}</Project>
       <Name>Shared</Name>

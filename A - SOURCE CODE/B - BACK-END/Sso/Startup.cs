@@ -26,7 +26,7 @@ namespace Sso
             );
 
             // Register inversion of control.
-            InversionOfControlConfig.Register(appBuilder, httpConfiguration);
+            IocConfig.Register(appBuilder, httpConfiguration);
 
             // Register web API module.
             appBuilder.UseWebApi(httpConfiguration);

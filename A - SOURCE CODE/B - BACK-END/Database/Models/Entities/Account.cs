@@ -1,9 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Shared.Models.Entities
+﻿namespace Database.Models.Entities
 {
-    [Table(nameof(Account))]
     public class Account
     {
         #region Properties
@@ -11,8 +7,6 @@ namespace Shared.Models.Entities
         /// <summary>
         /// Id of account.
         /// </summary>
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>

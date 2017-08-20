@@ -1,4 +1,4 @@
-﻿using Shared.Models.Entities;
+﻿using Database.Models.Entities;
 
 namespace Shared.Interfaces.Repositories
 {
