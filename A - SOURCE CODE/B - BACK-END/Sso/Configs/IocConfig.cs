@@ -3,11 +3,12 @@ using System.Data.Entity;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Database.Models.Contexts;
 using Owin;
-using Shared.Interfaces.Repositories;
-using Shared.Models.Contexts;
-using Shared.Repositories;
-using Shared.Services;
+using SharedService.Interfaces;
+using SharedService.Services;
+using Sso.Interfaces.Repositories;
+using Sso.Repositories;
 using Sso.Services;
 
 namespace Sso.Configs
@@ -42,11 +43,11 @@ namespace Sso.Configs
             containerBuilder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
             // Register services.
-            var systemFileService = new SystemFileService();
-            containerBuilder.RegisterType<SystemFileService>().As<ISystemFileService>().OnActivating(x => x.ReplaceInstance(systemFileService)).InstancePerLifetimeScope();
-            
-            #endregion
+            containerBuilder.RegisterType<SystemFileService>().As<ISystemFileService>().InstancePerLifetimeScope();
+            containerBuilder.RegisterType<IdentityService>().As<IIdentityService>().InstancePerLifetimeScope();
 
+            #endregion
+            
             #region IoC build
 
             // Container build.

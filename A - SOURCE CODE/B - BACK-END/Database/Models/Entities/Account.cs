@@ -13,6 +13,11 @@
         /// Email which is used for registering email.
         /// </summary>
         public string Email { get; set; }
+        
+        /// <summary>
+        /// Account password (hash)
+        /// </summary>
+        public string Password { get; set; }
 
         #endregion
     }
