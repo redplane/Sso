@@ -1,13 +1,15 @@
-﻿using System.Configuration;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Database.Models.Contexts;
+using JWT;
+using JWT.Algorithms;
+using JWT.Serializers;
 using Owin;
 using SharedService.Interfaces;
-using SharedService.Services;
 using Sso.Interfaces.Repositories;
+using Sso.Interfaces.Services;
 using Sso.Repositories;
 using Sso.Services;
 
@@ -36,6 +38,18 @@ namespace Sso.Configs
 
             #region Unit of work & Database context
 
+            // Initiate token serializer.
+            IJwtAlgorithm jwtAlgorithm = new HMACSHA256Algorithm();
+            IJsonSerializer jsonSerializer = new JsonNetSerializer();
+            IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+            IDateTimeProvider provider = new UtcDateTimeProvider();
+            IJwtValidator jwtValidator = new JwtValidator(jsonSerializer, provider);
+            IJwtEncoder jwtEncoder = new JwtEncoder(jwtAlgorithm, jsonSerializer, urlEncoder);
+            var jwtDecoder = new JwtDecoder(jsonSerializer, jwtValidator, urlEncoder);
+
+            containerBuilder.RegisterInstance(jwtEncoder).As<IJwtEncoder>();
+            containerBuilder.RegisterInstance(jwtDecoder).As<IJwtDecoder>();
+
             // Database context initialization.
             containerBuilder.RegisterType<RelationalDbContext>().As<DbContext>().InstancePerLifetimeScope();
 
@@ -45,9 +59,11 @@ namespace Sso.Configs
             // Register services.
             containerBuilder.RegisterType<SystemFileService>().As<ISystemFileService>().InstancePerLifetimeScope();
             containerBuilder.RegisterType<IdentityService>().As<IIdentityService>().InstancePerLifetimeScope();
+            containerBuilder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
+            containerBuilder.RegisterType<SystemTimeService>().As<ISystemTimeService>().InstancePerLifetimeScope();
 
             #endregion
-            
+
             #region IoC build
 
             // Container build.
@@ -61,7 +77,7 @@ namespace Sso.Configs
 
             #endregion
         }
-        
+
         #endregion
     }
 }

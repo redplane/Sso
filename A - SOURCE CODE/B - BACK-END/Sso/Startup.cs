@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 using Owin;
 using Sso.Configs;
 
@@ -25,6 +26,13 @@ namespace Sso
                 new {id = RouteParameter.Optional}
             );
 
+            // Use camel-cased json formatter.
+            var formatters = httpConfiguration.Formatters;
+            var jsonFormatter = formatters.JsonFormatter;
+            jsonFormatter.UseDataContractJsonSerializer = false;
+            var settings = jsonFormatter.SerializerSettings;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            
             // Register inversion of control.
             IocConfig.Register(appBuilder, httpConfiguration);
 

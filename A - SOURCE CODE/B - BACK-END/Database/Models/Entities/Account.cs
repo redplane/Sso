@@ -19,6 +19,11 @@
         /// </summary>
         public string Password { get; set; }
 
+        /// <summary>
+        /// Url of photo.
+        /// </summary>
+        public string PhotoUrl { get; set; }
+
         #endregion
     }
 }

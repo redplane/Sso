@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
+using Sso.Interfaces.Services;
 
 namespace Sso.Services
 {

@@ -1,4 +1,4 @@
-﻿namespace Sso.Services
+﻿namespace Sso.Interfaces.Services
 {
     public interface ISystemFileService
     {

@@ -46,7 +46,6 @@
     <Compile Include="Models\IdentityGoogle.cs" />
     <Compile Include="Interfaces\IIdentityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IdentityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
