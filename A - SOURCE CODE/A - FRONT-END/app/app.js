@@ -12,6 +12,7 @@ angular
         'personal-summary',
         'personal-technical-skill',
         'project-summary',
+        'login',
 
         // Services.
         'message-service',
@@ -43,7 +44,7 @@ angular
                 .hashPrefix('!');
 
             // Fallback url.
-            $routeProvider.otherwise({redirectTo: '/personal-summary'});
+            $routeProvider.otherwise({redirectTo: '/login'});
 
         }])
     .controller('ApiDocumentationController', ['GeneralInfoService', '$scope',
