@@ -18,7 +18,7 @@ namespace Sso
 
             // Use routing attribute.
             httpConfiguration.MapHttpAttributeRoutes();
-
+            
             // Route navigation configuration.
             httpConfiguration.Routes.MapHttpRoute(
                 "DefaultApi",
@@ -32,10 +32,11 @@ namespace Sso
             jsonFormatter.UseDataContractJsonSerializer = false;
             var settings = jsonFormatter.SerializerSettings;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            
-            // Register inversion of control.
-            IocConfig.Register(appBuilder, httpConfiguration);
 
+            // Register inversion of control.
+            FilterConfig.Register(httpConfiguration);
+            IocConfig.Register(appBuilder, httpConfiguration);
+            
             // Register web API module.
             appBuilder.UseWebApi(httpConfiguration);
         }

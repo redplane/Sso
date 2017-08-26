@@ -1,5 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Configuration;
+using System.Data.Entity;
 using System.Web.Http;
+using System.Web.Http.Filters;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Database.Models.Contexts;
@@ -7,11 +10,13 @@ using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
 using Owin;
-using SharedService.Interfaces;
+using Sso.Controllers;
 using Sso.Interfaces.Repositories;
 using Sso.Interfaces.Services;
+using Sso.Models.Identity;
 using Sso.Repositories;
 using Sso.Services;
+using Sso.Middlewares;
 
 namespace Sso.Configs
 {
@@ -49,7 +54,17 @@ namespace Sso.Configs
 
             containerBuilder.RegisterInstance(jwtEncoder).As<IJwtEncoder>();
             containerBuilder.RegisterInstance(jwtDecoder).As<IJwtDecoder>();
+            
+            // Read token settings.
+            var tokenSetting = new JwtSetting();
+            tokenSetting.Name = ConfigurationManager.AppSettings["token-name"];
+            tokenSetting.Key = ConfigurationManager.AppSettings["token-key"];
+            tokenSetting.LifeTime = Convert.ToInt32(ConfigurationManager.AppSettings["token-life-time"]);
+            tokenSetting.Type = ConfigurationManager.AppSettings["token-type"];
 
+            // Register token settings into system.
+            containerBuilder.RegisterInstance(tokenSetting).As<JwtSetting>() .SingleInstance();
+            
             // Database context initialization.
             containerBuilder.RegisterType<RelationalDbContext>().As<DbContext>().InstancePerLifetimeScope();
 
@@ -67,12 +82,14 @@ namespace Sso.Configs
             #region IoC build
 
             // Container build.
+            containerBuilder.RegisterWebApiFilterProvider(httpConfiguration);
             var container = containerBuilder.Build();
 
             // Attach DI resolver.
             httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
             // Attach dependency injection into configuration.
+            app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(httpConfiguration);
 
             #endregion

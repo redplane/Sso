@@ -57,6 +57,9 @@
     <Reference Include="JWT, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JWT.3.0.3\lib\netstandard1.3\JWT.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Sqlite.Core.2.0.0\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
     </Reference>
@@ -232,6 +235,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ApiAuthorizeAttribute.cs" />
+    <Compile Include="Configs\FilterConfig.cs" />
     <Compile Include="Configs\IocConfig.cs" />
     <Compile Include="Constants\Queues.cs" />
     <Compile Include="Controllers\ApiAccountController.cs" />
@@ -239,7 +244,13 @@
     <Compile Include="Interfaces\Repositories\IParentRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryAccount.cs" />
     <Compile Include="Interfaces\Repositories\IUnitOfWork.cs" />
-    <Compile Include="Interfaces\Services\IdentityService.cs" />
+    <Compile Include="Interfaces\Services\IIdentityService.cs" />
+    <Compile Include="Middlewares\BearerAuthenticationMiddleware.cs" />
+    <Compile Include="Middlewares\LoggingActionFilter.cs" />
+    <Compile Include="Models\Identity\Generic.cs" />
+    <Compile Include="Models\Identity\Google.cs" />
+    <Compile Include="Models\Identity\JwtSetting.cs" />
+    <Compile Include="Services\IdentityService.cs" />
     <Compile Include="Interfaces\Services\IEncryptionService.cs" />
     <Compile Include="Interfaces\Services\ISystemTimeService.cs" />
     <Compile Include="Program.cs" />
@@ -252,10 +263,11 @@
     <Compile Include="Services\SystemFileService.cs" />
     <Compile Include="Services\SystemTimeService.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\ExternalRegistrationViewModel.cs" />
-    <Compile Include="ViewModels\InternalLoginViewModel.cs" />
-    <Compile Include="ViewModels\InternalRegistrationViewModel.cs" />
-    <Compile Include="ViewModels\TokenViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\ExternalLoginViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\ExternalRegistrationViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\InternalLoginViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\InternalRegistrationViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\TokenViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -272,17 +284,11 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{0CC4EF35-BB6D-498E-9F71-60EA75BABEAE}</Project>
       <Name>Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharedService\Service.csproj">
-      <Project>{b0d9af5c-788c-4096-a0e7-0de0d6c56c94}</Project>
-      <Name>Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{221A6C42-BD4B-40CD-94B5-822924BD30BD}</Project>

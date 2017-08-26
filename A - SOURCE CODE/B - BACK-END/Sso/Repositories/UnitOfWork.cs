@@ -34,7 +34,7 @@ namespace Sso.Repositories
         /// <summary>
         ///     Repository which provides function to access into account database.
         /// </summary>
-        public IRepositoryAccount RepositoryAccount
+        public IRepositoryAccount RepositoryAccounts
             => _repositoryAccount ?? (_repositoryAccount = new RepositoryAccount(_dbContext));
 
         #endregion

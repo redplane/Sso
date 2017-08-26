@@ -9,7 +9,7 @@ namespace Sso.Interfaces.Repositories
         /// <summary>
         /// Repository which provides functions to access account database.
         /// </summary>
-        IRepositoryAccount RepositoryAccount { get; }
+        IRepositoryAccount RepositoryAccounts { get; }
 
         #endregion
 

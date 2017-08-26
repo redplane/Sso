@@ -24,6 +24,11 @@
         /// </summary>
         public string PhotoUrl { get; set; }
 
+        /// <summary>
+        /// Account role.
+        /// </summary>
+        public int Role { get; set; }
+
         #endregion
     }
 }
