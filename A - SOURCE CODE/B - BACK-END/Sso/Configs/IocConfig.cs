@@ -66,10 +66,10 @@ namespace Sso.Configs
             containerBuilder.RegisterInstance(tokenSetting).As<JwtSetting>() .SingleInstance();
             
             // Database context initialization.
-            containerBuilder.RegisterType<RelationalDbContext>().As<DbContext>().InstancePerLifetimeScope();
+            containerBuilder.RegisterType<RelationalDbContext>().As<DbContext>().InstancePerRequest();
 
             // Unit of work registration.
-            containerBuilder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            containerBuilder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
 
             // Register services.
             containerBuilder.RegisterType<SystemFileService>().As<ISystemFileService>().InstancePerLifetimeScope();

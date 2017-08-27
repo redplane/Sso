@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -183,7 +185,7 @@ namespace Sso.Controllers
             // When token should be expired.
             var expiration = DateTime.Now.AddSeconds(_jwtSetting.LifeTime);
             var iExpiration = _systemTimeService.UtcToEpoch(expiration);
-            
+
             // Initiate claim.
             var generic = new Generic(account);
             generic.ExpirationTime = iExpiration;
@@ -228,16 +230,20 @@ namespace Sso.Controllers
 
             // Account instance.
             Account account;
+            HttpResponseMessage httpResponseMessage = null;
+            string szContent;
             var accounts = _unitOfWork.RepositoryAccounts.Search();
-            
+
             switch (info.Provider)
             {
                 case TokenProvider.Google:
+                    httpResponseMessage = await _identityService.FindGoogleIdentity(info.Token);
+                    if (httpResponseMessage.StatusCode != HttpStatusCode.OK)
+                        return NotFound();
 
-                    var httpResponseMessage = await _identityService.FindGoogleIdentity(info.Token);
-                    var szContent = await httpResponseMessage.Content.ReadAsStringAsync();
+                    szContent = await httpResponseMessage.Content.ReadAsStringAsync();
                     var identityGoogle = JsonConvert.DeserializeObject<Google>(szContent);
-
+                    
                     // Account is not in the system. Create one.
                     account = await accounts.Where(x => x.Email.Equals(identityGoogle.Email,
                         StringComparison.InvariantCultureIgnoreCase)).FirstOrDefaultAsync();
@@ -247,16 +253,38 @@ namespace Sso.Controllers
                         account = new Account();
                         account.Email = identityGoogle.Email;
                         account.PhotoUrl = identityGoogle.Photo;
-                        
-                        _unitOfWork.RepositoryAccounts.Insert(account);
-                       await _unitOfWork.CommitAsync();
-                    }
+                        account.Role = 0;
 
+                        _unitOfWork.RepositoryAccounts.Insert(account);
+                        await _unitOfWork.CommitAsync();
+                    }
                     break;
+
+                case TokenProvider.Facebook:
+                    httpResponseMessage = await _identityService.FindFacebookIdentity(info.Token);
+                    szContent = await httpResponseMessage.Content.ReadAsStringAsync();
+                    var identityFacebook = JsonConvert.DeserializeObject<Facebook>(szContent);
+
+                    // Account is not in the system. Create one.
+                    account = await accounts.Where(x => x.Email.Equals(identityFacebook.Email,
+                        StringComparison.InvariantCultureIgnoreCase)).FirstOrDefaultAsync();
+
+                    if (account == null)
+                    {
+                        account = new Account();
+                        account.Email = identityFacebook.Email;
+                        account.PhotoUrl = identityFacebook.Picture["data"]["url"].ToString();
+                        account.Role = 0;
+
+                        _unitOfWork.RepositoryAccounts.Insert(account);
+                        await _unitOfWork.CommitAsync();
+                    }
+                    break;
+
                 default:
                     return NotFound();
             }
-            
+
             #endregion
 
             #region Token generation

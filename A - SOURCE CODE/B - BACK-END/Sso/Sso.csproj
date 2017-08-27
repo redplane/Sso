@@ -238,15 +238,15 @@
     <Compile Include="Attributes\ApiAuthorizeAttribute.cs" />
     <Compile Include="Configs\FilterConfig.cs" />
     <Compile Include="Configs\IocConfig.cs" />
-    <Compile Include="Constants\Queues.cs" />
     <Compile Include="Controllers\ApiAccountController.cs" />
+    <Compile Include="Enumerations\FacebookProfilePictureSize.cs" />
     <Compile Include="Enumerations\TokenProvider.cs" />
     <Compile Include="Interfaces\Repositories\IParentRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryAccount.cs" />
     <Compile Include="Interfaces\Repositories\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Services\IIdentityService.cs" />
     <Compile Include="Middlewares\BearerAuthenticationMiddleware.cs" />
-    <Compile Include="Middlewares\LoggingActionFilter.cs" />
+    <Compile Include="Models\Identity\Facebook.cs" />
     <Compile Include="Models\Identity\Generic.cs" />
     <Compile Include="Models\Identity\Google.cs" />
     <Compile Include="Models\Identity\JwtSetting.cs" />
@@ -272,12 +272,6 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="App\MqConfigFile.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App\MqLists.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Database\iDistribution.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -1,8 +1,0 @@
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\bin\Debug\SharedService.dll
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\bin\Debug\SharedService.pdb
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\obj\Debug\Service.csproj.CoreCompileInputs.cache
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\obj\Debug\SharedService.dll
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\obj\Debug\SharedService.pdb
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\bin\Debug\Newtonsoft.Json.dll
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\bin\Debug\Newtonsoft.Json.xml
-E:\Programming\DotNet\Web\Fullstack\ASP.NET Framework\Sso\A - SOURCE CODE\B - BACK-END\SharedService\obj\Debug\Service.csprojResolveAssemblyReference.cache
