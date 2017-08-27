@@ -86,7 +86,8 @@ namespace Sso.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            return Ok();
+            var account = (Account) Request.Properties[ClaimTypes.Actor];
+            return Ok(account);
         }
 
         /// <summary>

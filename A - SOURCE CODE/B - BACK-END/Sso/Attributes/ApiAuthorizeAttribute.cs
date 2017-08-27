@@ -40,12 +40,6 @@ namespace Sso.Attributes
                 if (IsAllowAnonymousRequest(httpActionContext))
                     return;
 
-                var lifetimeScope = httpActionContext.Request.GetDependencyScope();
-                // Search the instance of unit of work.
-                var unitOfWork = (IUnitOfWork)lifetimeScope.GetService(typeof(IUnitOfWork));
-
-                #region Principle validation
-
                 // Search the principle of request.
                 var principle = httpActionContext.RequestContext.Principal;
 
@@ -56,6 +50,13 @@ namespace Sso.Attributes
                         httpActionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
                     return;
                 }
+
+                var lifetimeScope = httpActionContext.Request.GetDependencyScope();
+                // Search the instance of unit of work.
+                var unitOfWork = (IUnitOfWork)lifetimeScope.GetService(typeof(IUnitOfWork));
+
+                #region Principle validation
+                
                 // Search the identity set in principle.
                 var identity = principle.Identity;
                 if (identity == null)

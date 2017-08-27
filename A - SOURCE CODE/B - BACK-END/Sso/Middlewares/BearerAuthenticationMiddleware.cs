@@ -99,8 +99,13 @@ namespace Sso.Middlewares
 
                 var claimIdentity = new ClaimsIdentity(null, JwtSetting.Name);
                 foreach (var key in claimPairs.Keys)
-                    claimIdentity.AddClaim(new Claim(key, claimPairs[key]));
+                {
+                    var value = claimPairs[key];
+                    if (string.IsNullOrEmpty(value))
+                        continue;
 
+                    claimIdentity.AddClaim(new Claim(key, claimPairs[key]));
+                }
                 // Authenticate the request.
                 httpAuthenticationContext.Principal = new ClaimsPrincipal(claimIdentity);
             }
