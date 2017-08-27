@@ -1,4 +1,5 @@
-﻿using Sso.Enumerations;
+﻿using System.ComponentModel.DataAnnotations;
+using Sso.Enumerations;
 
 namespace Sso.ViewModels.Accounts
 {
@@ -9,6 +10,7 @@ namespace Sso.ViewModels.Accounts
         /// <summary>
         /// Token of 3rd provider.
         /// </summary>
+        [Required]
         public string Token { get; set; }
 
         /// <summary>
