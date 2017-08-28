@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="323676358406-ikvol20relacv3mn5popdi79e5m759pc.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.auth0.com/js/auth0/8.8/auth0.min.js"></script>
+</head>
+<body>
+<div class="g-signin2" data-onsuccess="loginGoogle" data-theme="dark"></div>
+
+<!--<div id="fb-root"></div>-->
+<!--<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>-->
+
+<button class="btn-login" onclick="clickLogin(event)">Login</button>
+<button class="btn btn-primary btn-flat" onclick="loginFacebook()">Login facebook</button>
+<script>
+
+    /*
+    * Google authentication.
+    * */
+    loginGoogle = function (googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+    };
+
+    clickLogin = function (e) {
+        var webAuth = new auth0.WebAuth({
+            domain: 'lightalakanzam.auth0.com',
+            clientID: 'Iok8Z96u3fRSBabNnzH1j9sMwI7eQ8Lp',
+            redirectUri: window.location.href,
+            audience: 'https://lightalakanzam.auth0.com/userinfo',
+            responseType: 'token id_token',
+            scope: 'openid'
+        });
+
+        e.preventDefault();
+        webAuth.authorize().parseHash(function (err, authResult) {
+            console.log(authResult);
+            if (authResult && authResult.accessToken && authResult.idToken) {
+                window.location.hash = '';
+                setSession(authResult);
+                loginBtn.style.display = 'none';
+                homeView.style.display = 'inline-block';
+            } else if (err) {
+                homeView.style.display = 'inline-block';
+                console.log(err);
+                alert(
+                    'Error: ' + err.error + '. Check the console for further details.'
+                );
+            }
+        });
+        ;
+    }
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1984309301812750',
+            cookie: true,  // enable cookies to allow the server to access
+                           // the session
+            xfbml: true,  // parse social plugins on this page
+            version: 'v2.8' // use graph api version 2.8
+        });
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    loginFacebook = function(){
+        FB.login(function(response) {
+            if (response.authResponse) {
+                console.log('Welcome!  Fetching your information.... ');
+                console.log(response); // dump complete info
+                access_token = response.authResponse.accessToken; //get access token
+                user_id = response.authResponse.userID; //get FB UID
+
+            } else {
+                //user hit cancel button
+                console.log('User cancelled login or did not fully authorize.');
+
+            }
+        }, {
+            scope: 'public_profile,email'
+        });
+    }
+
+</script>
+</body>
+</html>
