@@ -9,9 +9,7 @@ angular
         // Components.
         'navigation-bar',
         'sidebar',
-        'personal-summary',
-        'personal-technical-skill',
-        'project-summary',
+        'main-content',
         'login',
 
         // Services.
