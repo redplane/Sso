@@ -7,7 +7,8 @@ angular.module('sidebar', ['ngRoute'])
             templateUrl: "components/sidebar/sidebar.html",
             controller: 'SidebarController',
             scope: {
-                items: '='
+                items: '=',
+                selectCategory: '&'
             }
         };
     })
@@ -40,8 +41,15 @@ angular.module('sidebar', ['ngRoute'])
                         $scope.categories = data.records;
                     })
                     .catch(function(x){
-                        console.log(x);
                     });
+            };
+
+            /*
+            * Callback which is fired when a category is selected.
+            * */
+            $scope.clickSelectCategory = function(category){
+                if ($scope.selectCategory)
+                    $scope.selectCategory({category: category});
             };
 
         }]);

@@ -1,32 +1,82 @@
 <div ng-init="init()">
 
-    <div class="form-group">
-        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-            <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                    <h4>Slide {{slide.id}}</h4>
-                    <p>{{slide.text}}</p>
+
+    <!--Sidebar-->
+    <div class="col-md-3">
+        <sidebar select-category="selectCategory(category)"></sidebar>
+    </div>
+
+    <!--Main content-->
+    <div class="col-md-9">
+
+        <div class="row">
+            <div class="form-group">
+                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                    <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                        <img ng-src="{{slide.image}}" style="margin:auto;">
+                        <div class="carousel-caption">
+                            <h4>Slide {{slide.id}}</h4>
+                            <p>{{slide.text}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pagination control-->
+        <div class="row">
+            <div class="form-group">
+                <div class="text-center">
+                    <ul uib-pagination
+                        max-size="5"
+                        total-items="pagination.total"
+                        ng-model="pagination.page"
+                        first-text="<<"
+                        previous-text="<"
+                        next-text=">"
+                        last-text=">>">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--Pictures list-->
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-4 col-sm-6 col-xs-6"
+                     ng-repeat="hotImage in hotImages">
+
+                    <div class="thumbnail">
+                        <a href="javascript:void(0);">
+                            <img ng-src="{{hotImage.url}}"
+                                 alt="Lights"
+                                 style="width:100%">
+                            <div class="caption">
+                                <p>{{hotImage.caption}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pagination control-->
+        <div class="row">
+            <div class="form-group">
+                <div class="text-center">
+                    <ul uib-pagination
+                        max-size="5"
+                        total-items="pagination.total"
+                        ng-model="pagination.page"
+                        first-text="<<"
+                        previous-text="<"
+                        next-text=">"
+                        last-text=">>">
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-4"
-             ng-repeat="hotImage in hotImages">
-
-            <div class="thumbnail">
-                <a href="javascript:void(0);">
-                    <img ng-src="{{hotImage.url}}"
-                         alt="Lights"
-                         style="width:100%">
-                    <div class="caption">
-                        <p>{{hotImage.caption}}</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
 
 </div>

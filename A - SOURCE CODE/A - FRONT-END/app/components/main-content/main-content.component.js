@@ -23,6 +23,13 @@ angular.module('main-content', [
             // Hot images.
             $scope.hotImages = [];
 
+            // Pagination information.
+            $scope.pagination = {
+                page: 1,
+                records: 30,
+                total: 3000
+            };
+
             //#endregion
 
             //#region Methods
@@ -46,6 +53,13 @@ angular.module('main-content', [
                         url: 'http://via.placeholder.com/300x200'
                     });
                 }
+            };
+
+            /*
+            * Raised when a category is selected in sidebar.
+            * */
+            $scope.selectCategory = function(category){
+                console.log(category);
             };
 
             //#endregion

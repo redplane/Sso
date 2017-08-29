@@ -5,7 +5,8 @@
     <div class="profile-usermenu">
         <ul class="nav">
             <li ng-repeat="category in categories">
-                <a href="javascript:void(0);">
+                <a href="javascript:void(0);"
+                   ng-click="clickSelectCategory(category)">
                     <i class="fa fa-user-o">
                         <span>{{category.name | translate}}</span>
                     </i>
