@@ -13,9 +13,7 @@ angular
         'login',
 
         // Services.
-        'message-service',
-        'api-setting-service',
-        'general-info-service',
+        'iClipServices',
 
         // 3rd libraries.
         'ngAnimate',
@@ -45,6 +43,6 @@ angular
             $routeProvider.otherwise({redirectTo: '/login'});
 
         }])
-    .controller('ApiDocumentationController', ['GeneralInfoService', '$scope',
-        function (GeneralInfoService, $scope) {
+    .controller('ApiDocumentationController', ['$scope',
+        function ($scope) {
         }]);

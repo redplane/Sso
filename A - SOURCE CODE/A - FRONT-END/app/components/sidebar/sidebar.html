@@ -4,24 +4,10 @@
 
     <div class="profile-usermenu">
         <ul class="nav">
-            <li ng-class="isUrlChosen('/personal-summary') ? 'active' : ''">
-                <a href="#!personal-summary">
+            <li ng-repeat="category in categories">
+                <a href="javascript:void(0);">
                     <i class="fa fa-user-o">
-                        <span>{{"PERSONAL_SUMMARY" | translate}}</span>
-                    </i>
-                </a>
-            </li>
-            <li ng-class="isUrlChosen('/technical-skill') ? 'active' : ''">
-                <a href="#!technical-skill">
-                    <i class="fa fa-user-o">
-                        <span>{{"TECHNICAL_SKILL" | translate}}</span>
-                    </i>
-                </a>
-            </li>
-            <li ng-class="isUrlChosen('/project-summary') ? 'active' : ''">
-                <a href="#!project-summary">
-                    <i class="fa fa-user-o">
-                        <span>{{"PROJECTS" | translate}}</span>
+                        <span>{{category.name | translate}}</span>
                     </i>
                 </a>
             </li>
