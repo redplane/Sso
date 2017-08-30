@@ -13,7 +13,10 @@ angular.module('iClipServices', [])
         getCategories: 'api/category/search',
 
         // Url which is for initiating category.
-        initCategory: 'api/category'
+        initCategory: 'api/category',
+
+        // Url which is for searching clips by using specific conditions.
+        getClips: 'api/clip/search'
 
         //#endregion
     });
