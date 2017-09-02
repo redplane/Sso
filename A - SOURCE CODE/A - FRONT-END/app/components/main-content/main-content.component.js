@@ -3,7 +3,8 @@
 angular.module('main-content', [
     'ngRoute'
 ])
-    .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+    .config(['$locationProvider', '$routeProvider',
+        function ($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');
 
         $routeProvider
@@ -12,22 +13,45 @@ angular.module('main-content', [
                 templateUrl: "components/main-content/main-content.component.html"
             });
     }])
-    .controller('MainContentController', ['$scope',
-        function ($scope) {
+    .controller('MainContentController', ['$scope', 'clipService', 'clipThumbnailService', 'clipCategorizingService',
+        function ($scope, clipService, clipThumbnailService, clipCategorizingService) {
 
             //#region Properties
 
             // Collection of slides.
             $scope.slides = [];
 
-            // Hot images.
-            $scope.hotImages = [];
-
             // Pagination information.
             $scope.pagination = {
                 page: 1,
                 records: 30,
                 total: 3000
+            };
+
+            /*
+            * List of clips which should be displayed on the screen.
+            * */
+            $scope.clipsList = {
+                records: [],
+                total: 0
+            };
+
+            /*
+            * List of clip thumbnails should be displayed on the screen.
+            * */
+            $scope.clipThumbnailsList = {
+                records: [],
+                total: 0
+            };
+
+            /*
+            * Conditions which are for searching clips.
+            * */
+            $scope.findClipsCondition = {
+                pagination:{
+                    page: 1,
+                    records: 30
+                }
             };
 
             //#endregion
@@ -39,28 +63,65 @@ angular.module('main-content', [
             * */
             $scope.init = function () {
 
-                for (let index = 0; index < 10; index++) {
-                    $scope.slides.push({
-                        image: 'http://placehold.it/900x350',
-                        text: 'Nice image',
-                        id: $scope.slides.length
-                    });
-                }
+                // Search for hot trend items.
+                $scope.findClipsCondition = {};
+                $scope.findClipThumbnailsCondition = {};
 
-                for (let index = 0; index < 20; index++){
-                    $scope.hotImages.push({
-                        caption: 'A beautiful image',
-                        url: 'http://via.placeholder.com/300x200'
-                    });
-                }
+                $scope.findClips($scope.findClipsCondition);
+                $scope.findClipThumbnails($scope.findClipThumbnailsCondition);
+
             };
 
             /*
             * Raised when a category is selected in sidebar.
             * */
             $scope.selectCategory = function(category){
-                console.log(category);
+
+                // Re-initiate condition.
+                $scope.findClipsCondition = {
+                    categoryIds: [category.id],
+                    pagination: {
+                        page: 1,
+                        records: 20
+                    }
+                };
+
+                $scope.findClips($scope.findClipsCondition);
+
             };
 
+            /*
+            * Find clips base on specific condition.
+            * */
+            $scope.findClips = function(condition){
+                console.log(condition);
+                clipCategorizingService.getClipCategorizings(condition)
+                    .then(function(x){
+                        let data = x.data;
+                        if (!data)
+                            return;
+
+                        console.log(data);
+                        $scope.clipsList = data;
+                    })
+                    .catch(function(x){
+                        console.log(x);
+                    });
+            };
+
+            /*
+            * Find clip thumbnails by using specific conditions.
+            * */
+            $scope.findClipThumbnails = function(condition){
+                clipThumbnailService.getClipThumbnails(condition)
+                    .then(function(x){
+                        let data = x.data;
+                        if (!data)
+                            return;
+                        
+                        $scope.clipThumbnailsList = data;
+                        $scope.$applyAsync();
+                    });
+            };
             //#endregion
         }]);
