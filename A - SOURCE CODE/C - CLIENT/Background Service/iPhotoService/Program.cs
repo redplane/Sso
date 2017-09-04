@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iPhotoService.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
@@ -9,6 +10,8 @@ namespace iPhotoService
 {
     static class Program
     {
+        #region Methods
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,9 +20,11 @@ namespace iPhotoService
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new ApiHostingService()
             };
             ServiceBase.Run(ServicesToRun);
         }
+
+        #endregion
     }
 }
