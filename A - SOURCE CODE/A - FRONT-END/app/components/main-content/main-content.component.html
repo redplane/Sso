@@ -8,11 +8,10 @@
         </ul>
     </div>
 
-    <!--col 1-->
-    <div class="col-md-4">
-        <div class="p">
-            <img src="https://s-media-cache-ak0.pinimg.com/736x/1b/2a/a7/1b2aa711cb88233d9494239352967d67.jpg"
-                 class="img-responsive i" alt="">
+    <!--col x3-->
+    <div class="col-md-4" ng-repeat="i in [1,2,3]">
+        <div class="p" ng-repeat="image in imgUrl">
+            <img ng-src="{{randomImg()}}" class="img-responsive i" alt="">
             <div class="d">
                 <!--<span class="t">Title</span>-->
                 <a href="#" class="a">Tom Harking</a>
@@ -20,71 +19,5 @@
                 <a href="#" class="s text-center"><i class="ion-ios-download"></i></a>
             </div>
         </div>
-        <div class="p">
-            <a href="#">
-                <img src="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/18011702_697241200479622_8913213687993466880_n.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-        <div class="p">
-            <a href="#">
-                <img src="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/17267954_1327223343989912_6454917984224804864_n.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-        <div class="p">
-            <a href="#">
-                <img src="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/18095066_1163889850388120_1266411449853411328_n.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
     </div>
-
-    <!--col 2-->
-    <div class="col-md-4">
-        <div class="p">
-            <a href="#">
-                <img src="https://s-media-cache-ak0.pinimg.com/564x/c0/f4/06/c0f406556afb42605975c28846f81db2.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-        <div class="p">
-            <a href="#">
-                <img src="https://s-media-cache-ak0.pinimg.com/236x/61/00/89/610089e726d35848efec366bbb958413.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-        <div class="p">
-            <a href="#">
-                <img src="https://s-media-cache-ak0.pinimg.com/564x/ed/7e/dd/ed7edd0e5a690ea09ab4f5656ce33591.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-    </div>
-
-    <!--col 3-->
-    <div class="col-md-4">
-        <div class="p">
-            <a href="#">
-                <img src="https://s-media-cache-ak0.pinimg.com/236x/d7/5c/dc/d75cdca56a7d8796979129a5ccc3ac6d.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-
-        <div class="p">
-            <a href="#">
-                <img src="https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/17333337_246519425756489_5020246659360096256_n.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-
-        <div class="p">
-            <a href="#">
-                <img src="https://s-media-cache-ak0.pinimg.com/236x/8f/d0/1d/8fd01d3b7c1cb47655b676cf7b5d2ed1.jpg"
-                     class="i" alt="">
-            </a>
-        </div>
-
-    </div>
-
 </div>

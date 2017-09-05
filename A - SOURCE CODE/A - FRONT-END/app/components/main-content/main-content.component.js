@@ -18,6 +18,24 @@ angular.module('main-content', [
 
             //#region Properties
 
+            $scope.imgUrl = [
+                'https://s-media-cache-ak0.pinimg.com/736x/1b/2a/a7/1b2aa711cb88233d9494239352967d67.jpg',
+                'https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/18011702_697241200479622_8913213687993466880_n.jpg',
+                'https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/17267954_1327223343989912_6454917984224804864_n.jpg',
+                'https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/18095066_1163889850388120_1266411449853411328_n.jpg',
+                'https://s-media-cache-ak0.pinimg.com/564x/c0/f4/06/c0f406556afb42605975c28846f81db2.jpg',
+                'https://s-media-cache-ak0.pinimg.com/236x/61/00/89/610089e726d35848efec366bbb958413.jpg',
+                'https://s-media-cache-ak0.pinimg.com/564x/ed/7e/dd/ed7edd0e5a690ea09ab4f5656ce33591.jpg',
+                'https://s-media-cache-ak0.pinimg.com/236x/d7/5c/dc/d75cdca56a7d8796979129a5ccc3ac6d.jpg',
+                'https://scontent-ams3-1.cdninstagram.com/t51.2885-15/e35/17333337_246519425756489_5020246659360096256_n.jpg',
+                'https://s-media-cache-ak0.pinimg.com/236x/8f/d0/1d/8fd01d3b7c1cb47655b676cf7b5d2ed1.jpg'
+            ];
+            
+            $scope.randomImg = function () {
+                return $scope.imgUrl[Math.floor((Math.random() * 10) + 1)];
+            }
+            
+            
             // Collection of slides.
             $scope.slides = [];
 
