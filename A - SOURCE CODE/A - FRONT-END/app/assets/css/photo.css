@@ -1,0 +1,27 @@
+.p {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.p .i {
+    width: 100%;
+}
+
+.p .d {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(180deg,rgba(0,0,0,.2) 0,transparent 40%,transparent 60%,rgba(0,0,0,.3));
+    opacity: 0;
+    transition: all .15s ease-in-out;
+}
+
+.p .d:hover {
+    opacity: 100;
+}
+
+.nav-pills {
+    margin-bottom: 15px;
+}
