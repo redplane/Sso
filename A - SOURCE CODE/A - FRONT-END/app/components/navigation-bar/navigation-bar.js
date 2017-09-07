@@ -3,7 +3,7 @@
 angular.module('navigation-bar', ['ngRoute'])
     .directive('navigationBar', function () {
         return {
-            replace: true,
+            replace: false,
             restrict: "E",
             controller: "NavigationBarController",
             templateUrl: "components/navigation-bar/navigation-bar.html"
