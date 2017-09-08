@@ -1,14 +1,11 @@
-﻿namespace Database.Models.Entities
+﻿using System.Collections.Generic;
+
+namespace Database.Models.Entities
 {
     public class Account
     {
         #region Properties
-
-        /// <summary>
-        /// Id of account.
-        /// </summary>
-        public int Id { get; set; }
-
+        
         /// <summary>
         /// Email which is used for registering email.
         /// </summary>
@@ -30,5 +27,6 @@
         public int Role { get; set; }
 
         #endregion
+
     }
 }

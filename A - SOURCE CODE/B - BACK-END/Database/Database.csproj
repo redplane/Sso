@@ -52,6 +52,13 @@
   <ItemGroup>
     <Compile Include="Models\Contexts\RelationalDbContext.cs" />
     <Compile Include="Models\Entities\Account.cs" />
+    <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\Entities\CategoryInitialization.cs" />
+    <Compile Include="Models\Entities\FavoriteCategory.cs" />
+    <Compile Include="Models\Entities\Photo.cs" />
+    <Compile Include="Models\Entities\PhotoCategorization.cs" />
+    <Compile Include="Models\Entities\PhotoThumbnail.cs" />
+    <Compile Include="Models\Entities\PhotoUpload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
