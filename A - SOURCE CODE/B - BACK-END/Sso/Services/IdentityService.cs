@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Database.Models.Entities;
 using JWT;
 using Newtonsoft.Json;
 using Sso.Enumerations;
@@ -132,6 +134,25 @@ namespace Sso.Services
         {
             return _jwtDecoder.DecodeToObject<T>(jwt, secret, false);
         }
+        
+        /// <inheritdoc />
+        /// <summary>
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public Account FindRequestIdentity(HttpRequestMessage request)
+        {
+            // Invalid request.
+            if (request == null)
+                return null;
+            
+            // Properties are not valid.
+            if (request.Properties == null || !request.Properties.ContainsKey(ClaimTypes.Actor))
+                return null;
+
+            return (Account) request.Properties[ClaimTypes.Actor];
+        }
+
         #endregion
     }
 }

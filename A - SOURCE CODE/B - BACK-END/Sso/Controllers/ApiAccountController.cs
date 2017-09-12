@@ -77,19 +77,7 @@ namespace Sso.Controllers
         #endregion
 
         #region Methods
-
-        /// <summary>
-        ///     Hello world method.
-        /// </summary>
-        /// <returns></returns>
-        [Route("")]
-        [HttpGet]
-        public IHttpActionResult Get()
-        {
-            var account = (Account) Request.Properties[ClaimTypes.Actor];
-            return Ok(account);
-        }
-
+        
         /// <summary>
         ///     Register account using email & password.
         /// </summary>
@@ -311,6 +299,25 @@ namespace Sso.Controllers
 
             return Ok(jwt);
         }
+
+        /// <summary>
+        /// Get personal profile of request sender.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("personal-profile")]
+        public  IHttpActionResult GetPersonalProfile()
+        {
+            // Cannot find identity attached into request.
+            if (!Request.Properties.ContainsKey(ClaimTypes.Actor))
+                return Unauthorized();
+
+            // Find value of attached key.
+            var account = (Account) Request.Properties[ClaimTypes.Actor];
+            account.Password = null;
+            return Ok(account);
+        }
+        
 
         #endregion
     }

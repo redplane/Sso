@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Database.Enumerations;
 
 namespace Database.Models.Entities
 {
@@ -24,7 +25,17 @@ namespace Database.Models.Entities
         /// <summary>
         /// Account role.
         /// </summary>
-        public int Role { get; set; }
+        public Role Role { get; set; }
+
+        /// <summary>
+        /// Time when account had been created.
+        /// </summary>
+        public double JoinedTime { get; set; }
+
+        /// <summary>
+        /// Time when account information was lastly modified.
+        /// </summary>
+        public double? LastModifiedTime { get; set; }
 
         #endregion
 

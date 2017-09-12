@@ -27,7 +27,7 @@ namespace Database.Models.Contexts
         /// <summary>
         /// List of favourite categories.
         /// </summary>
-        public DbSet<FavoriteCategory> FavoriteCategories { get; set; }
+        public DbSet<FavouriteCategory> FavoriteCategories { get; set; }
 
         /// <summary>
         /// List of photos.
@@ -111,6 +111,7 @@ namespace Database.Models.Contexts
             
             // Category index.
             entity.HasKey(x => x.Id);
+            entity.Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             // Table name mapping.
             entity.ToTable(nameof(Category));
@@ -136,7 +137,7 @@ namespace Database.Models.Contexts
         private void InitFavouriteCategory(DbModelBuilder dbModelBuilder)
         {
             // Find entity.
-            var entity = dbModelBuilder.Entity<FavoriteCategory>();
+            var entity = dbModelBuilder.Entity<FavouriteCategory>();
 
             // Primary key setup.
             entity.HasKey(x => new {x.CategoryId, x.FollowerEmail});

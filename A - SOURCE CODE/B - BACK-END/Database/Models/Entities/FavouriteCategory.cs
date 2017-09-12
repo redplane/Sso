@@ -2,7 +2,7 @@
 
 namespace Database.Models.Entities
 {
-    public class FavoriteCategory
+    public class FavouriteCategory
     {
         #region Properties
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Database.Models.Entities;
 using Sso.Enumerations;
 using Sso.Models.Identity;
 
@@ -51,6 +52,13 @@ namespace Sso.Interfaces.Services
         /// <returns></returns>
         T DecodeJwt<T>(string jwt, string secret);
 
+        /// <summary>
+        /// Find identity from request.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Account FindRequestIdentity(HttpRequestMessage request);
+        
         #endregion
     }
 }
