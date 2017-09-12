@@ -238,11 +238,15 @@
     <Compile Include="Attributes\ApiAuthorizeAttribute.cs" />
     <Compile Include="Configs\FilterConfig.cs" />
     <Compile Include="Configs\IocConfig.cs" />
+    <Compile Include="Controllers\ApiFavouriteCategoryController.cs" />
+    <Compile Include="Controllers\ApiCategoryController.cs" />
     <Compile Include="Controllers\ApiAccountController.cs" />
     <Compile Include="Enumerations\FacebookProfilePictureSize.cs" />
     <Compile Include="Enumerations\TokenProvider.cs" />
     <Compile Include="Interfaces\Repositories\IParentRepository.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryAccount.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryCategory.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryFavouriteCategory.cs" />
     <Compile Include="Interfaces\Repositories\IUnitOfWork.cs" />
     <Compile Include="Interfaces\Services\IIdentityService.cs" />
     <Compile Include="Middlewares\BearerAuthenticationMiddleware.cs" />
@@ -250,6 +254,8 @@
     <Compile Include="Models\Identity\Generic.cs" />
     <Compile Include="Models\Identity\Google.cs" />
     <Compile Include="Models\Identity\JwtSetting.cs" />
+    <Compile Include="Repositories\RepositoryCategory.cs" />
+    <Compile Include="Repositories\RepositoryFavouriteCategory.cs" />
     <Compile Include="Services\IdentityService.cs" />
     <Compile Include="Interfaces\Services\IEncryptionService.cs" />
     <Compile Include="Interfaces\Services\ISystemTimeService.cs" />
