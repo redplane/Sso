@@ -27,19 +27,11 @@
 .p .a,
 .p .h,
 .p .s {
-    padding: 5px;
-    font-size: 24px;
-    color: #fff;
     position: absolute;
-
 }
 
 .p .s,
 .p .h {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background: black;
     bottom: 5px;
 }
 
@@ -59,6 +51,17 @@
     right: 60px;
 }
 
+.s, .h, .a {
+    background: black;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 10px 5px;
+    font-size: 24px;
+    color: #fff;
+    padding: 5px;
+}
+
 .nav-pills {
     margin-bottom: 15px;
     font-weight: bolder;
@@ -71,4 +74,36 @@
 .nav-pills > li > a:hover,
 .nav-pills > li > a:active {
     color: #222;
+}
+
+.img-route {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    transition: -webkit-transform .35s cubic-bezier(.77,0,.175,1);
+    transition: transform .35s cubic-bezier(.77,0,.175,1);
+    transition: transform .35s cubic-bezier(.77,0,.175,1),-webkit-transform .35s cubic-bezier(.77,0,.175,1);
+    overflow: hidden;
+}
+
+.img-route .full-screen {
+    position: static;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.img-route .img-origin > img {
+    display: block;
+    width: 100vw;
+    min-height: 100vh;
+}
+.img-route .full-screen .action-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: transparent;
 }
