@@ -53,6 +53,7 @@
     <Compile Include="Enumerations\SortDirection.cs" />
     <Compile Include="Enumerations\Sortings\CategoryPropertySort.cs" />
     <Compile Include="Enumerations\Sortings\FavouriteCategoryPropertySort.cs" />
+    <Compile Include="Enumerations\Sortings\PhotoPropertySort.cs" />
     <Compile Include="Models\Pagination.cs" />
     <Compile Include="Models\Range.cs" />
     <Compile Include="Models\SearchResult.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="ViewModels\Category\InitiateCategoryViewModel.cs" />
     <Compile Include="ViewModels\Category\SearchCategoryViewModel.cs" />
     <Compile Include="ViewModels\FavoriteCategory\SearchFavoriteCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Photo\SearchPhotoViewModel.cs" />
     <Compile Include="ViewModels\RegisterAccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

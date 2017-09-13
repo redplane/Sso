@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database.Models.Entities
+namespace DbModel.Models.Entities
 {
     public class FavouriteCategory
     {

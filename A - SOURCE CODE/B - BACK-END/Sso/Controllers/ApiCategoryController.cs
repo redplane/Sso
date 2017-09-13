@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 using Shared.Enumerations;
 using Shared.Enumerations.Sortings;
 using Shared.Models;
@@ -127,44 +127,7 @@ namespace Sso.Controllers
 
             return Ok(category);
         }
-
-        /// <summary>
-        /// Start following a category.
-        /// </summary>
-        /// <param name="categoryId"></param>
-        /// <returns></returns>
-        [Route("follow")]
-        public async Task<IHttpActionResult> FollowCategory([FromUri] int categoryId)
-        {
-            #region Find request identity
-
-            // Find account from request.
-            var account = _identityService.FindRequestIdentity(Request);
-            if (account == null)
-                return Unauthorized();
-
-            #endregion
-
-            #region Find category
-
-            // Find categories.
-            var categories = _unitOfWork.RepositoryCategories.Search();
-            categories = categories.Where(x => x.Id == categoryId);
-            
-            // Category is not found.
-            var category = await categories.FirstOrDefaultAsync();
-            if (category == null)
-                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.NotFound,
-                    HttpMessages.CategoryNotFound));
-
-            #endregion
-
-            #region Check following category
-            
-
-            #endregion
-        }
-
+        
         /// <summary>
         /// Edit category information.
         /// </summary>

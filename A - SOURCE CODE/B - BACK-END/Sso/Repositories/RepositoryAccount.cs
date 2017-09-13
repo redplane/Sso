@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 using Sso.Interfaces.Repositories;
 
 namespace Sso.Repositories

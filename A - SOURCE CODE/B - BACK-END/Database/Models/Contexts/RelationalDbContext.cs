@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 
-namespace Database.Models.Contexts
+namespace DbModel.Models.Contexts
 {
     public class RelationalDbContext : DbContext
     {
@@ -58,7 +58,7 @@ namespace Database.Models.Contexts
         /// </summary>
         public RelationalDbContext() : base("iDistribution")
         {
-            
+            Database.SetInitializer<RelationalDbContext>(null);
         }
 
         #endregion

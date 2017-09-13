@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 using Shared.ViewModels.FavoriteCategory;
 
 namespace Sso.Interfaces.Repositories

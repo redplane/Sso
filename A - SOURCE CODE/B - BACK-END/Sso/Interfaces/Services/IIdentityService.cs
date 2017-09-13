@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 using Sso.Enumerations;
 using Sso.Models.Identity;
 

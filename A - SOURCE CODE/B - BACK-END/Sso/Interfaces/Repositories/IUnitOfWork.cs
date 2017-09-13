@@ -26,6 +26,11 @@ namespace Sso.Interfaces.Repositories
         /// </summary>
         IRepositoryFavouriteCategory RepositoryFavouriteCategories { get; }
 
+        /// <summary>
+        /// Repository which provides functions to access photo database.
+        /// </summary>
+        IRepositoryPhoto RepositoryPhotos { get; }
+
         #endregion
 
         #region Methods

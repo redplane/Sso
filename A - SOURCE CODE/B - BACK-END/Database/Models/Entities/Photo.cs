@@ -1,4 +1,4 @@
-﻿namespace Database.Models.Entities
+﻿namespace DbModel.Models.Entities
 {
     public class Photo
     {

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 using JWT;
 using Newtonsoft.Json;
 using Sso.Enumerations;

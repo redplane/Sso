@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 using Shared.ViewModels.Category;
 using Shared.ViewModels.FavoriteCategory;
 using Sso.Interfaces.Repositories;

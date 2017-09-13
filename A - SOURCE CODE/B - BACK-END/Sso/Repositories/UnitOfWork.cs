@@ -46,6 +46,11 @@ namespace Sso.Repositories
         /// </summary>
         private IRepositoryFavouriteCategory _repositoryFavouriteCategory;
 
+        /// <summary>
+        /// Repository which provides functions to access into photo table.
+        /// </summary>
+        private IRepositoryPhoto _repositoryPhotos;
+
         /// <inheritdoc />
         /// <summary>
         ///     Repository which provides function to access into account database.
@@ -66,6 +71,12 @@ namespace Sso.Repositories
         public IRepositoryFavouriteCategory RepositoryFavouriteCategories =>
             _repositoryFavouriteCategory ??
             (_repositoryFavouriteCategory = new RepositoryFavouriteCategory(_dbContext));
+
+        /// <inheritdoc />
+        /// <summary>
+        /// </summary>
+        public IRepositoryPhoto RepositoryPhotos =>
+            _repositoryPhotos ?? (_repositoryPhotos = new RepositoryPhoto(_dbContext));
 
         #endregion
 

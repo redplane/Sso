@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Database.Enumerations;
+﻿using DbModel.Enumerations;
 
-namespace Database.Models.Entities
+namespace DbModel.Models.Entities
 {
     public class Account
     {

@@ -1,4 +1,4 @@
-﻿namespace Database.Enumerations
+﻿namespace DbModel.Enumerations
 {
     public enum Role
     {

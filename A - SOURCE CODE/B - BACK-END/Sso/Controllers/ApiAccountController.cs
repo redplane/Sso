@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Database.Models.Entities;
+using DbModel.Models.Entities;
 using Newtonsoft.Json;
 using Sso.Attributes;
 using Sso.Enumerations;

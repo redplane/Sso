@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using Database.Models.Entities;
+using DbModel.Enumerations;
+using DbModel.Models.Entities;
 
 namespace Sso.Models.Identity
 {
@@ -22,7 +23,7 @@ namespace Sso.Models.Identity
         /// <summary>
         /// Role of account.
         /// </summary>
-        public int Role { get; set; }
+        public Role Role { get; set; }
         
         /// <summary>
         /// Time when token should be expired.
@@ -48,7 +49,7 @@ namespace Sso.Models.Identity
         /// <param name="photo"></param>
         /// <param name="role"></param>
         /// <param name="expiration"></param>
-        public Generic(string email, string photo, int role, double expiration)
+        public Generic(string email, string photo, Role role, double expiration)
         {
             Email = email;
             Photo = photo;

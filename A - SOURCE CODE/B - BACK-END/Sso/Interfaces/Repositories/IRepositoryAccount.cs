@@ -1,4 +1,4 @@
-﻿using Database.Models.Entities;
+﻿using DbModel.Models.Entities;
 
 namespace Sso.Interfaces.Repositories
 {

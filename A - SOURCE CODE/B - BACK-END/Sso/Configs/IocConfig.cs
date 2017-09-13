@@ -5,7 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Filters;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Database.Models.Contexts;
+using DbModel.Models.Contexts;
 using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
