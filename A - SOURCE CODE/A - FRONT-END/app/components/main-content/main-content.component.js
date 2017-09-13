@@ -13,8 +13,8 @@ angular.module('main-content', [
                 templateUrl: "components/main-content/main-content.component.html"
             });
     }])
-    .controller('MainContentController', ['$scope', 'clipService', 'clipThumbnailService', 'clipCategorizingService',
-        function ($scope, clipService, clipThumbnailService, clipCategorizingService) {
+    .controller('MainContentController', ['$scope',
+        function ($scope) {
 
             //#region Properties
 
@@ -80,14 +80,6 @@ angular.module('main-content', [
             * Event which is called when component has been initialized.
             * */
             $scope.init = function () {
-
-                // Search for hot trend items.
-                $scope.findClipsCondition = {};
-                $scope.findClipThumbnailsCondition = {};
-
-                $scope.findClips($scope.findClipsCondition);
-                $scope.findClipThumbnails($scope.findClipThumbnailsCondition);
-
             };
 
             /*
@@ -108,38 +100,5 @@ angular.module('main-content', [
 
             };
 
-            /*
-            * Find clips base on specific condition.
-            * */
-            $scope.findClips = function(condition){
-                console.log(condition);
-                clipCategorizingService.getClipCategorizings(condition)
-                    .then(function(x){
-                        let data = x.data;
-                        if (!data)
-                            return;
-
-                        console.log(data);
-                        $scope.clipsList = data;
-                    })
-                    .catch(function(x){
-                        console.log(x);
-                    });
-            };
-
-            /*
-            * Find clip thumbnails by using specific conditions.
-            * */
-            $scope.findClipThumbnails = function(condition){
-                clipThumbnailService.getClipThumbnails(condition)
-                    .then(function(x){
-                        let data = x.data;
-                        if (!data)
-                            return;
-                        
-                        $scope.clipThumbnailsList = data;
-                        $scope.$applyAsync();
-                    });
-            };
             //#endregion
         }]);
