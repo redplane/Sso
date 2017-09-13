@@ -33,7 +33,7 @@ angular.module('main-content', [
             
             $scope.randomImg = function () {
                 return $scope.imgUrl[Math.floor((Math.random() * 10) + 1)];
-            }
+            };
             
             
             // Collection of slides.
