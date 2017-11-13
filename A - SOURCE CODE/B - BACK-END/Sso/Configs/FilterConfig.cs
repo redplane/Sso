@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Sso.Filters;
 using Sso.Middlewares;
 
 namespace Sso.Configs
 {
-    public class FilterConfig
+    public static class FilterConfig
     {
         #region Methods
 
@@ -16,8 +12,11 @@ namespace Sso.Configs
         {
             // Authentication middleware registration.
             httpConfiguration.Filters.Add(new BearerAuthenticationMiddleware());
+
+            // Global exception filter registration,
+            httpConfiguration.Filters.Add(new GlobalExceptionFilter());
         }
 
-#endregion
+        #endregion
     }
 }

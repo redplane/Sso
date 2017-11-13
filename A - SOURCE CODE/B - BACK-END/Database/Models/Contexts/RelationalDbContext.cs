@@ -53,6 +53,7 @@ namespace DbModel.Models.Contexts
 
         #region Constructors
 
+        /// <inheritdoc />
         /// <summary>
         /// Initiate database context with connection obtained from App.config.
         /// </summary>
